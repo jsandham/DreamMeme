@@ -11,6 +11,16 @@ class Gifloader extends Component {
     }
     
     handleGoClick = () => {
+
+        var terms = this.state.query.split(",");
+
+        // logging
+        for(var i = 0; i < terms.length; i++){
+            console.log(terms[i]);
+        }
+
+
+
         fetch("https://api.giphy.com/v1/gifs/search?api_key=LqcVgpq7nA0GD15wRZezjPYezf3O00Te&q=" + this.state.query)
         .then(res => res.json())
         .then(
