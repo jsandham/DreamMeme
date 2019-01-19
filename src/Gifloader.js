@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import './Gifloader.css' 
 
-
 class Gifloader extends Component {
     constructor(props) {
         super(props)
@@ -12,7 +11,15 @@ class Gifloader extends Component {
     }
     
     handleGoClick = () => {
-        console.log(this.search.value)
+        fetch("https://api.giphy.com/v1/gifs/search?api_key=LqcVgpq7nA0GD15wRZezjPYezf3O00Te&q=" + this.state.query)
+        .then(res => res.json())
+        .then(
+            (result) => {
+                this.setState({
+                    currentImage: result.data[0].embed_url
+                })
+            } 
+        )
     }
 
     handleInputChange = () => {
@@ -35,6 +42,9 @@ class Gifloader extends Component {
                         <button className="btn btn-outline-warning col-lg-4" onClick={this.handleGoClick}>
                         Search
                         </button>
+                        </div>
+                        <div className = "imageHolder">
+                        <iframe src={this.state.currentImage} className ="frame"/>
                         </div>
                         </div>
             </div>
