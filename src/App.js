@@ -9,6 +9,9 @@ class App extends Component {
         <header className="App-header">
         </header>
         <Gifloader/>
+        <header className="App-link">
+        <img src={ require('./god.jpg') } />
+        </header>
       </div>
     );
   }
