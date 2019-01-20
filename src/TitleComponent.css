@@ -1,6 +1,8 @@
 .main{
-    font-size: 40px;
+    font-size: 60px;
     font-family: 'Palatino ', Times, serif;
     padding-bottom: .5%;
-    
+    padding-top: 20px;
+    color: white !important;
+
 }

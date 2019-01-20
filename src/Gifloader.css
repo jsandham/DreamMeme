@@ -12,4 +12,19 @@
     width: 400px;
     height: 38px;
     border: none;
+    outline-style:none;
+    background-color: #94618e;
+    text-align: center; 
+    color: white;
+
 }
+
+.searchTerms{
+    color: white;
+    background-color: #94618e;}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    opacity: 0.5; /* Firefox */
+  }
+  
