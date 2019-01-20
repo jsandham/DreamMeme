@@ -6,7 +6,8 @@ class Gifloader extends Component {
         super(props)
         this.state = {
             query: '',
-            currentImage: ''
+            currentImage: '',
+            gifs: []
         }
     }
     
@@ -17,19 +18,19 @@ class Gifloader extends Component {
         // logging
         for(var i = 0; i < terms.length; i++){
             console.log(terms[i]);
+
+            fetch("https://api.giphy.com/v1/gifs/search?api_key=LqcVgpq7nA0GD15wRZezjPYezf3O00Te&q=" + terms[i])
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    //this.state.gifs.push(result.data[0].embed_url);
+                    console.log(result);
+                    this.setState({
+                        gifs: [...this.state.gifs, result.data[0].embed_url]
+                    })
+                } 
+            )
         }
-
-
-
-        fetch("https://api.giphy.com/v1/gifs/search?api_key=LqcVgpq7nA0GD15wRZezjPYezf3O00Te&q=" + this.state.query)
-        .then(res => res.json())
-        .then(
-            (result) => {
-                this.setState({
-                    currentImage: result.data[0].embed_url
-                })
-            } 
-        )
     }
 
     handleInputChange = () => {
@@ -44,6 +45,11 @@ class Gifloader extends Component {
             <div>
                     <div className='container'>
                         <div className='row'>
+
+                        <p>
+                            {this.state.gifs}
+                        </p>
+
                         <input 
                             placeholder="What do you feel"
                             ref={input => this.search = input}
