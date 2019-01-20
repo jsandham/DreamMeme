@@ -20,7 +20,7 @@ class Gifloader extends Component {
             currentImage: '',
             isPlay: false,
             gifs: [],
-            searches: ['test'],
+            searches: [],
             index: -500,
             title: ''
         }
@@ -70,7 +70,7 @@ class Gifloader extends Component {
         })
         let urls = []
         for (var i = 0; i < terms.length; i++) {
-            urls.push("https://api.giphy.com/v1/gifs/search?api_key=wbIY7fEyDz93nRkjS66rNPV5nOOnWkyW&q=" + terms[i]) 
+            urls.push("https://api.giphy.com/v1/gifs/search?api_key=LqcVgpq7nA0GD15wRZezjPYezf3O00Te&q=" + terms[i]) 
         }
         var promises = urls.map(url => fetch(url).then(y => y.json()));
         Promise.all(promises).then(result => {
@@ -92,6 +92,7 @@ class Gifloader extends Component {
     }
 
     handlePlayClick = () => {
+        this.state.searches[0] = ''
         this.setState({
             index: 0,
             isPlay: true
@@ -138,7 +139,7 @@ class Gifloader extends Component {
                 </div> : null }
                 <br></br>
                 {!this.state.isPlay ? <div>
-                <button className="btn btn-outline-warning col-lg-2" onClick={this.handlePlayClick}>
+                <button className="btn btn-outline-warning col-lg-2 playB" onClick={this.handlePlayClick}>
                     PLAY MOVIE
                         </button>
                 </div> : null }
@@ -146,7 +147,9 @@ class Gifloader extends Component {
                 <div>
                     <iframe src={this.state.gifs[this.state.index]} className="frame" />
                 </div>
+                <div className = "SearchT">
                 <p className="searchTerms">{this.state.searches[this.state.index]}</p>
+                </div>
             </div>
         )
     }

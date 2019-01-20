@@ -1,3 +1,5 @@
+
+
 .frame{
     height: 500px;
     width: 600px;
@@ -15,16 +17,22 @@
     outline-style:none;
     background-color: #94618e;
     text-align: center; 
-    color: white;
-
+    color: #ffae42;
+    padding-top: 17px;
+    
 }
 
+.playB{
+    color: #BCED91 !important;
+    border-color: #BCED91 !important;
+}
 .searchTerms{
-    color: white;
+    padding-bottom: 20px;
+    color: #ffae42;
     background-color: #94618e;}
 
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: white;
-    opacity: 0.5; /* Firefox */
+::placeholder {
+    color: #ffae42;
+    opacity: 0.3; 
   }
   
