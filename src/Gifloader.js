@@ -68,24 +68,22 @@ class Gifloader extends Component {
         this.setState({
             searches: terms
         })
-        // logging
+        let urls = []
         for (var i = 0; i < terms.length; i++) {
-            console.log(terms[i]);
-            var temp = terms[i]
-            fetch("https://api.giphy.com/v1/gifs/search?api_key=wbIY7fEyDz93nRkjS66rNPV5nOOnWkyW&q=" + terms[i])
-                .then(res => res.json())
-                .then(
-                    (result) => {
-                        //this.state.gifs.push(result.data[0].embed_url);
-                        console.log(result);
-                        that.setState({
-                            gifs: [...this.state.gifs, result.data[0].embed_url]
-                        })
-                    }
-                )
-
+            urls.push("https://api.giphy.com/v1/gifs/search?api_key=wbIY7fEyDz93nRkjS66rNPV5nOOnWkyW&q=" + terms[i]) 
         }
-    }
+        var promises = urls.map(url => fetch(url).then(y => y.json()));
+        Promise.all(promises).then(result => {
+            console.log(result[0])
+            for(var i = 0; i < that.state.searches.length; i++){
+                that.setState({
+                    gifs: [...that.state.gifs, result[i].data[0].embed_url]
+                })
+            }
+            // do something with results.
+        });
+    }                
+    
 
     handleInputChange = () => {
         this.setState({
