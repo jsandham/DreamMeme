@@ -1,4 +1,15 @@
 .frame{
     height: 500px;
-    width: 500px;
+    width: 600px;
+    border: none;
+}
+
+.imageHolder{
+    padding-top: 60px;
+}
+
+.search{
+    width: 400px;
+    height: 38px;
+    border: none;
 }
